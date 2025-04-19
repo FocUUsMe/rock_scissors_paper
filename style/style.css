@@ -1,5 +1,6 @@
     @import url('https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap');
     
     :root{
         --main-font: "Cantarell";              /*Все шрифты*/
@@ -88,10 +89,27 @@
                 border-radius: 15px;
                 cursor: pointer;
                 background-color: wheat;
-                box-shadow: 0px 0px 10px black;
+                box-shadow: 0px 0px 10px 5px black;
                 text-align: center;
                 align-content: center;
                 transition: all .4s ease;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                    &:after{
+                        position: absolute;
+                        content: '';
+                        width: 5px;
+                        height: 150%;
+                        background: white;
+                        left: 0;
+                        top: 0;
+                        filter: blur(4px);
+                        animation: flash 3s infinite linear;
+                    }
 
                     &:hover{
                         transform: translateY(-20px);
@@ -101,66 +119,76 @@
                         width: 90px;
                         height: 90px;
                     }
+
+                    & .front-side{
+                        opacity: 1;
+                        position: absolute;
+                    }
+
+                    & .back-side{
+                        opacity: 0;
+                        position: absolute;
+                    }
             }
     }
 
-    .chosef{
-        color: white;
-        font-family: var(--main-font);
-        font-size: 48px;
+    #enemy{
+        & div{
+            &:hover{
+                transform: translateY(0) !important;
+            }
+        }
     }
 
-    .btn{
-        position: relative;
-        overflow: hidden;
+    .selected{
+        & .front-side{
+            opacity: 0 !important;
+            position: absolute !important;
+        }
 
-        
-        &:after{
-            position: absolute;
-            content: '';
-            width: 5px;
-            height: 150%;
-            background: white;
-            left: 0;
-            top: 0;
-            filter: blur(4px);
-            animation: flash 3s infinite linear;
-         }
+        & .back-side{
+            opacity: 1 !important;
+            position: absolute !important;
+        }
+    }   
+
+    .counters{
+        position: absolute;
+        width: 100%;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+            & #enemy_count{
+                width: 80px;
+                height: 50px;
+                background-color: red;
+                border: 3px solid rgb(121, 6, 6);
+                border-radius: 15px;
+                text-align: center;
+                align-content: center;
+                font-family: var(--main-font);
+            }
+
+            & #player_count{
+                width: 80px;
+                height: 50px;
+                background-color: green;
+                border: 3px solid rgb(10, 88, 10);
+                border-radius: 15px;
+                text-align: center;
+                align-content: center;
+                font-family: var(--main-font);
+            }   
     }
 
-    .btn-1{
-        position: relative;
-        overflow: hidden;
-            
-            &:after{
-                position: absolute;
-                content: '';
-                width: 5px;
-                height: 150%;
-                background: white;
-                left: 0;
-                top: 0;
-                filter: blur(4px);
-                animation: flash 3s infinite linear;
-             }
-        }
-
-        .btn-2{
-            position: relative;
-            overflow: hidden;
-            
-            &:after{
-                position: absolute;
-                content: '';
-                width: 5px;
-                height: 150%;
-                background: white;
-                left: 0;
-                top: 0;
-                filter: blur(4px);
-                animation: flash 3s infinite linear;
-             }
-        }
+    #pulse{
+        position: fixed;
+        font-family: "Special Gothic Expanded One";
+        font-size: 4rem;
+        opacity: 0;
+    }
 
 
 
@@ -175,7 +203,6 @@
             transform: translateY(0);
         }
     }
-
     
     @keyframes flash{
         0%{
@@ -190,6 +217,14 @@
         }
         100%{
             transform: translateX(150px) rotate(45deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes pulse{
+        from{
+            opacity: 1;
+        }to{
             opacity: 0;
         }
     }

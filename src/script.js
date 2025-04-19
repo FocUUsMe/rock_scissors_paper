@@ -5,6 +5,18 @@
     
     const playerBtns = document.querySelectorAll('#main-player div');
 
+    const enemyCard = document.getElementById('bot');
+    const enemyCard1 = document.getElementById('bot1');
+    const enemyCard2 = document.getElementById('bot2');
+
+    const playerCount = document.getElementById('player_count');
+    const enemyCount = document.getElementById('enemy_count');
+
+    const pulse = document.getElementById('pulse');
+
+    playerPoints = 0;
+    enemyPoints = 0;
+
     const stats = {
         enemy_status: '',
         player_status: ''
@@ -24,9 +36,23 @@
         }
     }
 
+    function checkAnimation(){
+        if(stats.enemy_status === 'rock'){
+            enemyCard.classList.add('selected');
+        }else if(stats.enemy_status === 'paper'){
+            enemyCard1.classList.add('selected');
+        }else if(stats.enemy_status === 'scissors'){
+            enemyCard2.classList.add('selected');
+        }
+    }
+
     playerBtns.forEach((value) => {
         value.addEventListener('click', ()=>{
             enemyRandom();
+
+            enemyCard.classList.remove('selected');
+            enemyCard1.classList.remove('selected');
+            enemyCard2.classList.remove('selected');
 
             let playerValue = value.getAttribute('data-status');
             
@@ -38,43 +64,135 @@
                 stats.player_status = 'rock';
             }
 
+            pulse.style.animation = '';
+
             if(stats.enemy_status == 'paper' && stats.player_status == 'scissors'){
-                console.log('You win!');
-    
-                stats.enemy_status = '';
-                stats.player_status = '';
+                checkAnimation();
+                playerPoints++;
+                playerCount.innerHTML = playerPoints;
+
+                pulse.textContent = 'You win!';
+                pulse.style.color = 'darkgreen';
+                pulse.style.animation = 'pulse 1s 1 forwards'
+                let pulsetimeout = setTimeout(()=>{
+                    pulse.style.animation = '';
+                    clearTimeout(pulsetimeout);
+                }, 1000);
             }else if(stats.enemy_status == 'paper' && stats.player_status == 'paper'){
-                console.log('Nobody wins!');
-    
-                stats.enemy_status = '';
-                stats.player_status = '';
+                checkAnimation();
+
+                pulse.textContent = 'Nobody wins!';
+                pulse.style.color = 'yellow';
+                pulse.style.animation = 'pulse 1s 1 forwards'
+                let pulsetimeout = setTimeout(()=>{
+                    pulse.style.animation = '';
+                    clearTimeout(pulsetimeout);
+                }, 1000);
             }else if(stats.enemy_status == 'paper' && stats.player_status == 'rock'){
-                console.log('You lose!');
-    
-                stats.enemy_status = '';
-                stats.player_status = '';
+                checkAnimation();
+                enemyPoints++;
+                enemyCount.innerHTML = enemyPoints;
+
+                pulse.textContent = 'You lose!';
+                pulse.style.color = 'orangered';
+                pulse.style.animation = 'pulse 1s 1 forwards'
+                let pulsetimeout = setTimeout(()=>{
+                    pulse.style.animation = '';
+                    clearTimeout(pulsetimeout);
+                }, 1000);
             }
 
             if(stats.enemy_status == 'scissors' && stats.player_status == 'scissors'){
-                console.log('Nobody wins!');
+                checkAnimation();
+
+                pulse.textContent = 'Nobody wins!';
+                pulse.style.color = 'yellow';
+                pulse.style.animation = 'pulse 1s 1 forwards'
+                let pulsetimeout = setTimeout(()=>{
+                    pulse.style.animation = '';
+                    clearTimeout(pulsetimeout);
+                }, 1000);
             }else if(stats.enemy_status == 'scissors' && stats.player_status == 'paper'){
-                console.log('You lose!');
+                checkAnimation();
+                enemyPoints++;
+                enemyCount.innerHTML = enemyPoints;
+
+                pulse.textContent = 'You lose!';
+                pulse.style.color = 'orangered';
+                pulse.style.animation = 'pulse 1s 1 forwards'
+                let pulsetimeout = setTimeout(()=>{
+                    pulse.style.animation = '';
+                    clearTimeout(pulsetimeout);
+                }, 1000);
             }else if(stats.enemy_status == 'scissors' && stats.player_status == 'rock'){
-                console.log('You win!')
+                checkAnimation();
+                playerPoints++;
+                playerCount.innerHTML = playerPoints; 
+
+                pulse.textContent = 'You win!';
+                pulse.style.color = 'darkgreen';
+                pulse.style.animation = 'pulse 1s 1 forwards'
+                let pulsetimeout = setTimeout(()=>{
+                    pulse.style.animation = '';
+                    clearTimeout(pulsetimeout);
+                }, 1000);
             }
 
             if(stats.enemy_status == 'rock' && stats.player_status == 'scissors'){
-                console.log('You lose!');
+                checkAnimation();
+                enemyPoints++;
+                enemyCount.innerHTML = enemyPoints;
+
+                pulse.textContent = 'You lose!';
+                pulse.style.color = 'orangered';
+                pulse.style.animation = 'pulse 1s 1 forwards'
+                let pulsetimeout = setTimeout(()=>{
+                    pulse.style.animation = '';
+                    clearTimeout(pulsetimeout);
+                }, 1000);
             }else if(stats.enemy_status == 'rock' && stats.player_status == 'paper'){
-                console.log('You win!');
+                checkAnimation();
+                playerPoints++;
+                playerCount.innerHTML = playerPoints;
+
+                pulse.textContent = 'You win!';
+                pulse.style.color = 'darkgreen';
+                pulse.style.animation = 'pulse 1s 1 forwards'
+                let pulsetimeout = setTimeout(()=>{
+                    pulse.style.animation = '';
+                    clearTimeout(pulsetimeout);
+                }, 1000);
             }else if(stats.enemy_status == 'rock' && stats.player_status == 'rock'){
-                console.log('Nobody wins!');
+                checkAnimation();
+
+                pulse.textContent = 'Nobody wins!';
+                pulse.style.color = 'yellow';
+                pulse.style.animation = 'pulse 1s 1 forwards'
+                let pulsetimeout = setTimeout(()=>{
+                    pulse.style.animation = '';
+                    clearTimeout(pulsetimeout);
+                }, 1000);
+            }
+            
+
+            if(playerPoints >= 9){
+
             }
 
             let timeout = setTimeout(()=>{
                 stats.enemy_status = '';
                 stats.player_status = '';
+
+                clearTimeout(timeout);
             }, 100);
+
+            let clearClasses = setTimeout(()=>{
+                enemyCard.classList.remove('selected');
+                enemyCard1.classList.remove('selected');
+                enemyCard2.classList.remove('selected');
+
+                clearTimeout(clearClasses);
+            }, 700);
         })
     });
 
