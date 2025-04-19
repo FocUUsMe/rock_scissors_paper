@@ -1,0 +1,33 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="website icon" type="png" href="./img/website-icon.png">
+        <link rel="stylesheet" href="./style/style.css">
+        <script src="./src/script.js" defer></script>
+        <title>Rock, scissors, paper</title>
+    </head>
+    <body>
+        <div class="main-menu">      <!--Главное меню-->
+            <h1>ROCK, SCISSORS, PAPER!</h1>    
+            <button id="start_btn">START GAME</button>  
+        </div>
+
+        <div class="main-game">      <!--Игра-->
+            <div class="player" id="enemy"> <!--Бот-->
+                <div> <img id="bot" src="./assets/question-mark.png" alt=""> </div>
+                <div> <img id="bot1" src="./assets/question-mark.png" alt=""> </div>
+                <div> <img id="bot2" src="./assets/question-mark.png" alt=""> </div>
+            </div>
+            <div class="player" id="main-player">    <!--Сам игрок-->
+                <div data-status="rock" class="btn">       <img src="./assets/rock.png" alt=""> </div>
+                <div data-status="paper" class="btn-1">    <img src="./assets/paper.png" alt=""> </div>
+                <div data-status="scissors" class="btn-2"> <img src="./assets/scissors.png" alt=""> </div>
+            </div>
+            <h2 class="chosef">CHOOSE FIGURE</h2>
+        </div>
+
+
+    </body>
+    </html>
