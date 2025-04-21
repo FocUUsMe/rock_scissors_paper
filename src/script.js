@@ -183,11 +183,11 @@
             }
             
 
-            if(playerPoints >= 9){
+            if(playerPoints >= 10){
                 finalText.textContent = "You are a winner!"
                 finalText.style.color = 'rgb(114, 36, 160)';
                 gameEnd();
-            }else if(enemyPoints >= 9){
+            }else if(enemyPoints >= 10){
                 finalText.textContent = "This time you loose, try again!"
                 finalText.style.color = 'rgb(167, 8, 8)';
                 finalText.style.fontSize = '1.3rem';
