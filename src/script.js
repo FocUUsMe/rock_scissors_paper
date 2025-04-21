@@ -14,8 +14,12 @@
 
     const pulse = document.getElementById('pulse');
 
+    const gameFinal = document.querySelector('.game-end');
+    const finalText = document.getElementById('final-text');
+    const restartBtn = document.getElementById('restart_btn');
+
     playerPoints = 0;
-    enemyPoints = 0;
+    enemyPoints = 9;
 
     const stats = {
         enemy_status: '',
@@ -46,6 +50,12 @@
         }
     }
 
+    function gameEnd(){
+        mainGame.style.opacity = '0';
+        mainGame.style.display = 'none';
+        gameFinal.style.display = 'flex';
+    }
+
     playerBtns.forEach((value) => {
         value.addEventListener('click', ()=>{
             enemyRandom();
@@ -64,8 +74,6 @@
                 stats.player_status = 'rock';
             }
 
-            pulse.style.animation = '';
-
             if(stats.enemy_status == 'paper' && stats.player_status == 'scissors'){
                 checkAnimation();
                 playerPoints++;
@@ -77,7 +85,7 @@
                 let pulsetimeout = setTimeout(()=>{
                     pulse.style.animation = '';
                     clearTimeout(pulsetimeout);
-                }, 1000);
+                }, 500);
             }else if(stats.enemy_status == 'paper' && stats.player_status == 'paper'){
                 checkAnimation();
 
@@ -87,7 +95,7 @@
                 let pulsetimeout = setTimeout(()=>{
                     pulse.style.animation = '';
                     clearTimeout(pulsetimeout);
-                }, 1000);
+                }, 500);
             }else if(stats.enemy_status == 'paper' && stats.player_status == 'rock'){
                 checkAnimation();
                 enemyPoints++;
@@ -99,7 +107,7 @@
                 let pulsetimeout = setTimeout(()=>{
                     pulse.style.animation = '';
                     clearTimeout(pulsetimeout);
-                }, 1000);
+                }, 500);
             }
 
             if(stats.enemy_status == 'scissors' && stats.player_status == 'scissors'){
@@ -111,7 +119,7 @@
                 let pulsetimeout = setTimeout(()=>{
                     pulse.style.animation = '';
                     clearTimeout(pulsetimeout);
-                }, 1000);
+                }, 500);
             }else if(stats.enemy_status == 'scissors' && stats.player_status == 'paper'){
                 checkAnimation();
                 enemyPoints++;
@@ -123,7 +131,7 @@
                 let pulsetimeout = setTimeout(()=>{
                     pulse.style.animation = '';
                     clearTimeout(pulsetimeout);
-                }, 1000);
+                }, 500);
             }else if(stats.enemy_status == 'scissors' && stats.player_status == 'rock'){
                 checkAnimation();
                 playerPoints++;
@@ -135,7 +143,7 @@
                 let pulsetimeout = setTimeout(()=>{
                     pulse.style.animation = '';
                     clearTimeout(pulsetimeout);
-                }, 1000);
+                }, 500);
             }
 
             if(stats.enemy_status == 'rock' && stats.player_status == 'scissors'){
@@ -149,7 +157,7 @@
                 let pulsetimeout = setTimeout(()=>{
                     pulse.style.animation = '';
                     clearTimeout(pulsetimeout);
-                }, 1000);
+                }, 500);
             }else if(stats.enemy_status == 'rock' && stats.player_status == 'paper'){
                 checkAnimation();
                 playerPoints++;
@@ -161,7 +169,7 @@
                 let pulsetimeout = setTimeout(()=>{
                     pulse.style.animation = '';
                     clearTimeout(pulsetimeout);
-                }, 1000);
+                }, 500);
             }else if(stats.enemy_status == 'rock' && stats.player_status == 'rock'){
                 checkAnimation();
 
@@ -171,12 +179,21 @@
                 let pulsetimeout = setTimeout(()=>{
                     pulse.style.animation = '';
                     clearTimeout(pulsetimeout);
-                }, 1000);
+                }, 500);
             }
             
 
             if(playerPoints >= 9){
-
+                finalText.textContent = "You are a winner!"
+                finalText.style.color = 'rgb(114, 36, 160)';
+                gameEnd();
+            }else if(enemyPoints >= 9){
+                finalText.textContent = "This time you loose, try again!"
+                finalText.style.color = 'rgb(167, 8, 8)';
+                finalText.style.fontSize = '1.3rem';
+                gameEnd();
+            }else{
+                console.log('So far nobody won!');
             }
 
             let timeout = setTimeout(()=>{
@@ -192,7 +209,7 @@
                 enemyCard2.classList.remove('selected');
 
                 clearTimeout(clearClasses);
-            }, 700);
+            }, 500);
         })
     });
 
@@ -202,4 +219,8 @@
         mainMenu.style.opacity = '0';
         mainMenu.style.display = 'none';
         mainGame.style.opacity = '1';
+    });
+
+    restartBtn.addEventListener('click', ()=>{
+        location.reload();
     });

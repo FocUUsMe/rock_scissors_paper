@@ -15,6 +15,7 @@
 
     h1{
         color: white;
+        font-size: 3rem;
     }
 
     body{
@@ -36,6 +37,7 @@
         align-items: center;
         gap: 35px;  
         transition: all 1s ease-out;
+        animation: appearing 1.5s 1 forwards;
 
             & button{
                 width: 200px;
@@ -48,20 +50,12 @@
                 font-weight: bold;
                 background: linear-gradient(120deg, rgb(8, 167, 48), rgb(202, 199, 47));
                 animation: moving 5s linear infinite;
+                color: white;
 
                     &:hover{
                         width: 250px;
                     }
             }
-    }
-
-    .play-btn{
-        background-color: white;
-        width: 150px;
-        height: 150px;
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
     }
 
     .main-game{
@@ -169,6 +163,8 @@
                 text-align: center;
                 align-content: center;
                 font-family: var(--main-font);
+                color: white;
+                font-size: 1.5rem;
             }
 
             & #player_count{
@@ -180,6 +176,8 @@
                 text-align: center;
                 align-content: center;
                 font-family: var(--main-font);
+                color: white;
+                font-size: 1.2rem;
             }   
     }
 
@@ -188,6 +186,43 @@
         font-family: "Special Gothic Expanded One";
         font-size: 4rem;
         opacity: 0;
+    }
+
+    .game-end{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 60px;
+        display: none;
+        background: none;
+        animation: appearing 2s 1 forwards;
+
+            & h2{
+                font-family: var(--main-font);
+                font-size: 3rem;
+                color: white;
+            }
+
+            & button{
+                width: 200px;
+                height: 40px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                transition: all .4s ease-out;
+                font-family: var(--secondly-font);
+                font-weight: bold;
+                background: linear-gradient(120deg, rgb(167, 8, 8), rgb(114, 36, 160));
+                animation: moving 5s linear infinite;
+                color: white;
+
+                    &:hover{
+                        width: 250px;
+                    }
+            }
     }
 
 
@@ -204,7 +239,7 @@
         }
     }
     
-    @keyframes flash{
+    @keyframes flash{   /*Блик от блоков*/
         0%{
             opacity: 0;
             transform: translateX(0) rotate(45deg);
@@ -221,10 +256,73 @@
         }
     }
 
-    @keyframes pulse{
+    @keyframes pulse{   /*Надпись при выборе предмета*/
         from{
             opacity: 1;
         }to{
             opacity: 0;
+        }
+    }
+    
+    @keyframes appearing{  /*Появление блоков*/
+        from{
+            opacity: 0;
+        }to{
+            opacity: 1;
+        }
+    }
+
+
+
+    @media (max-width: 430px){
+        h1{
+            font-size: 1.8rem;
+        }
+
+        #start_btn{
+            width: 130px;
+        }
+        
+        .player{
+            gap: 30px;
+
+                & div{
+                    width: 90px;
+                    height: 90px;
+
+                        & img{
+                            width: 50px;
+                            height: 50px;
+                        }
+                }
+
+                
+        }
+
+        .counters{
+            justify-content: space-between;
+            flex-direction: column;
+            position: absolute;
+            height: 100%;
+            z-index: -100;
+
+                & span{
+                    margin: 70px 0px;
+                }
+        }
+
+        #pulse{
+            font-size: 2.5rem;
+        }
+
+        .game-end{
+                & h2{
+                    font-size: 2rem;
+                }
+
+                & button{
+                    width: 140px;
+                    font-size: 12px;
+                }
         }
     }

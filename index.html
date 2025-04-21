@@ -6,12 +6,12 @@
         <link rel="website icon" type="png" href="./img/website-icon.png">
         <link rel="stylesheet" href="./style/style.css">
         <script src="./src/script.js" defer></script>
-        <title>Rock, scissors, paper</title>
+        <title>Rock, Paper, Scissors</title>
     </head>
     <body>
         <div class="main-menu">      <!--Главное меню-->
-            <h1>ROCK, SCISSORS, PAPER!</h1>    
-            <button id="start_btn">START GAME</button>  
+            <h1>Rock, Paper, Scissors!</h1>    
+            <button id="start_btn">Start Game</button>  
         </div>
 
         <div class="main-game">      <!--Игра-->
@@ -40,7 +40,12 @@
                 <span id="player_count">0</span>
             </div>
 
-            <div id="pulse">Nothing</div>
+            <div id="pulse"></div>
+        </div>
+
+        <div class="game-end">       <!--Концовка игры-->
+            <h2 id="final-text"></h2>
+            <button id="restart_btn">Start New Game</button>
         </div>
 
 
