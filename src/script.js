@@ -19,7 +19,7 @@
     const restartBtn = document.getElementById('restart_btn');
 
     playerPoints = 0;
-    enemyPoints = 9;
+    enemyPoints = 0;
 
     const stats = {
         enemy_status: '',
