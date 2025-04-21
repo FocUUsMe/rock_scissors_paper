@@ -190,7 +190,6 @@
             }else if(enemyPoints >= 10){
                 finalText.textContent = "This time you loose, try again!"
                 finalText.style.color = 'rgb(167, 8, 8)';
-                finalText.style.fontSize = '1.3rem';
                 gameEnd();
             }else{
                 console.log('So far nobody won!');
