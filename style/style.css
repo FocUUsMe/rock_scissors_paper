@@ -279,6 +279,12 @@
             font-size: 1.8rem;
         }
 
+        body{
+            height: 740px;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+
         #start_btn{
             width: 130px;
         }
@@ -307,7 +313,7 @@
             z-index: -100;
 
                 & span{
-                    margin: 70px 0px;
+                    margin: 30px 0px;
                 }
         }
 
